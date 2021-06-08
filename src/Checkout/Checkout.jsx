@@ -24,6 +24,8 @@ Checkout.propTypes = {
 
 function Checkout(props) {
 
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
     const [carts, set_carts] = useState([])
 
     const [total_price, set_total_price] = useState(0)
@@ -144,9 +146,6 @@ function Checkout(props) {
             }
         }
     }
-
-
-    const { register, handleSubmit, errors } = useForm();
 
     const [redirect, set_redirect] = useState(false)
 
@@ -425,8 +424,8 @@ function Checkout(props) {
                                             <div className="col-md-12">
                                                 <div className="checkout-form-list">
                                                     <label>Full Name <span className="required">*</span></label>
-                                                    <input placeholder="Enter Fullname" type="text" name="fullname"
-                                                        ref={register({ required: true })}
+                                                    <input placeholder="Enter Fullname" type="text" id="fullname"
+                                                        {...register('fullname', { required: true })}
                                                         value={information.fullname}
                                                         onChange={onChangeFullname} />
                                                     {errors.fullname && errors.fullname.type === "required" && <span style={{ color: 'red' }}>* Fullname is required</span>}
@@ -435,8 +434,8 @@ function Checkout(props) {
                                             <div className="col-md-12">
                                                 <div className="checkout-form-list">
                                                     <label>Phone Number <span className="required">*</span></label>
-                                                    <input placeholder="Enter Phone Number" type="text" name="phone"
-                                                        ref={register({ required: true })}
+                                                    <input placeholder="Enter Phone Number" type="text" id="phone"
+                                                        {...register('phone', { required: true })}
                                                         value={information.phone}
                                                         onChange={onChangePhone} />
                                                     {errors.phone && errors.phone.type === "required" && <span style={{ color: 'red' }}>* Phone Number is required</span>}
@@ -445,8 +444,8 @@ function Checkout(props) {
                                             <div className="col-md-12">
                                                 <div className="checkout-form-list">
                                                     <label>Address <span className="required">*</span></label>
-                                                    <input placeholder="Street address" type="text" name="address"
-                                                        ref={register({ required: true })}
+                                                    <input placeholder="Street address" type="text" id="address"
+                                                        {...register('address', { required: true })}
                                                         value={information.address}
                                                         onChange={onChangeAddress}
                                                         disabled="true" />
@@ -456,8 +455,8 @@ function Checkout(props) {
                                             <div className="col-md-12">
                                                 <div className="checkout-form-list">
                                                     <label>Email <span className="required">*</span></label>
-                                                    <input placeholder="Enter Email" type="email" name="email"
-                                                        ref={register({ required: true })}
+                                                    <input placeholder="Enter Email" type="email" id="email"
+                                                          {...register('email', { required: true })}
                                                         value={information.email}
                                                         onChange={onChangeEmail} />
                                                     {errors.email && errors.email.type === "required" && <span style={{ color: 'red' }}>* Email is required</span>}
