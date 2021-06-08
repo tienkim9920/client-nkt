@@ -17,6 +17,7 @@ function SignUp(props) {
     const [username, set_username] = useState('')
     const [password, set_password] = useState('')
     const [confirm, set_confirm] = useState('')
+    const [email, set_email] = useState('')
 
     const [show_success, set_show_success] = useState(false)
 
@@ -97,7 +98,9 @@ function SignUp(props) {
                                     id_user: Math.random().toString(),
                                     username: username,
                                     password: password,
-                                    fullname: fullname
+                                    fullname: fullname,
+                                    email: email,
+                                    id_permission: '6087dcb5f269113b3460fce4'
                                 }
 
                                 const response = await User.Post_User(data)
@@ -169,6 +172,10 @@ function SignUp(props) {
                                 <div className="login-form">
                                     <h4 className="login-title">Register</h4>
                                     <div className="row">
+                                        <div className="col-md-12 mb-20">
+                                            <label>Email *</label>
+                                            <input className="mb-0" type="text" placeholder="First Name" value={email} onChange={(e) => set_email(e.target.value)} />
+                                        </div>
                                         <div className="col-md-12 mb-20">
                                             <label>Full Name *</label>
                                             <input className="mb-0" type="text" placeholder="First Name" value={fullname} onChange={(e) => set_fullname(e.target.value)} />
