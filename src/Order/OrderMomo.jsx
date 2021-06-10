@@ -122,7 +122,7 @@ function OrderMomo(props) {
                 dispatch(action_count_change)
 
                 setTimeout(() => {
-                    window.location.href = '/history'
+                    window.location.href = `/history/${response_order._id}`
                 }, 2500)
 
                 setNote("You Have Ordered Successfully")
@@ -139,7 +139,7 @@ function OrderMomo(props) {
     return (
         <div className="container fix_order">
             <h1>{note}</h1>
-            <span style={{ fontSize: '1.2rem' }}>Please Wait A Few Minutes!</span>
+            <span style={{ fontSize: '1.2rem' }}>Please Wait A Few Seconds!</span>
         </div>
     );
 }

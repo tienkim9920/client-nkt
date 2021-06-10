@@ -18,7 +18,7 @@ function OrderSuccess(props) {
     return (
         <div className="container fix_order">
             <h1>You Have Ordered Successfully</h1>
-            <span style={{ fontSize: '1.2rem' }}>Please Wait A Few Minutes!</span>
+            <span style={{ fontSize: '1.2rem' }}>Please Wait A Few Seconds!</span>
         </div>
     );
 }
