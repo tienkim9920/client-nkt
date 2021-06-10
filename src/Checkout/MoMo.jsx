@@ -1,19 +1,38 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import crypto from 'crypto'
 
+
+MoMo.propTypes = {
+    orderID: PropTypes.string,
+    total: PropTypes.number,
+}
+
+MoMo.defaultProps = {
+    orderID: '',
+    total: 0,
+}
+
+
 function MoMo(props) {
+
     const [error, setError] = useState(false)
+
+    const { orderID, total } = props
+
+    console.log(orderID)
+
     useEffect(() => {
         const path = "https://test-payment.momo.vn/gw_payment/transactionProcessor"
-        const partnerCode = "MOMOE9WJ20210526"
-        const accessKey = "KwWWd8aJMfHmjv64"
-        const serectkey = "VBjplO0Y9Wa9p2cCDgsl1CToQYIOEZGk"
+        const partnerCode = "MOMOHMXO20210608"
+        const accessKey = "XPBbArMut5PxmWiY"
+        const serectkey = "uLb683H8g9dWuiyipZbLHgO6zjSDlVm5"
         const orderInfo = "Thanh toán MoMo"
-        const notifyurl = "https://hieusuper20hcm.herokuapp.com/api/payment/momo"
-        const returnUrl = "https://hieusuper20hcm.netlify.app/momo"
-        const amount = "50000"
-        const orderId = props.orderID
+        const notifyurl = "http://tienkim9920.herokuapp.com/api/payment/momo"
+        const returnUrl = "https://tienkim9920.netlify.app/momo"
+        const amount = total.toString()
+        const orderId = orderID
         const requestType = "captureMoMoWallet"
         const extraData = "merchantName=Payment"
         const rawSignature = `partnerCode=${partnerCode}&accessKey=${accessKey}&requestId=${orderId}&amount=${amount}&orderId=${orderId}&orderInfo=${orderInfo}&returnUrl=${returnUrl}&notifyUrl=${notifyurl}&extraData=${extraData}`
@@ -33,23 +52,26 @@ function MoMo(props) {
             notifyUrl: notifyurl,
             extraData: extraData,
             requestType: requestType,
-            signature: signature,
+            signature: signature
         })
+
         axios.post(path, body)
-            .then(response => {
+            .then((response) => {
                 if (response.data.errorCode !== 0) {
                     setError(true)
                     setTimeout(() => {
                         setError(false)
                     }, 1500)
                 } else {
+
                     window.location.href = response.data.payUrl
+
                 }
             })
             .catch(error => {
                 console.error('There was an error!', error);
             })
-    }, [])
+    }, [orderID])
 
     return (
         <div>
