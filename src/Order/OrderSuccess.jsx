@@ -11,7 +11,7 @@ function OrderSuccess(props) {
 
         setTimeout(() => {
             window.location.href = '/history'
-        }, 2500)
+        }, 4000)
 
     }, [])
 
