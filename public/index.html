@@ -200,8 +200,12 @@
           $('#price_shipping').html('5000');
         } else if (parseInt(Math.round(distance_in_kilo)) > 5 && parseInt(Math.round(distance_in_kilo)) <= 10) {
           $('#price_shipping').html('10000');
-        } else {
+        } else if (parseInt(Math.round(distance_in_kilo)) > 10 && parseInt(Math.round(distance_in_kilo)) <= 15) {
           $('#price_shipping').html('15000');
+        } else if (parseInt(Math.round(distance_in_kilo)) > 15 && parseInt(Math.round(distance_in_kilo)) <= 70) {
+          $('#price_shipping').html('20000');
+        } else {
+          $('#price_shipping').html('35000');
         }
       }
 
